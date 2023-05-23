@@ -1,0 +1,15 @@
+{
+  "name": "aws-test-terraform-modules-ec2-alb-bis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "try": "cd infrastructure-aws/terraform && terraform init --var-file=variables.tfvars && terraform plan --var-file=variables.tfvars",   
+    "start": "cd infrastructure-aws/terraform && terraform init --var-file=variables.tfvars && terraform apply --var-file=variables.tfvars -auto-approve",
+    "stop": "cd infrastructure-aws/terraform && terraform destroy --var-file=variables.tfvars -auto-approve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
