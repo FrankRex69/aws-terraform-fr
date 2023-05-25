@@ -68,8 +68,8 @@ module "ec2" {
     keyName          = var.aws_key_name
     networkInterface_id = module.ni.network_interface_id
     networkInterface_id_b = module.ni.network_interface_id_b
-    aws_user_data = file("userdata.tpl")
-    aws_user_data_2 = file("userdata_2.tpl")
+    aws_user_data = "${file("userdata.tpl")}"
+    aws_user_data_2 = "${file("userdata_2.tpl")}"
 }
 
 # 10. Create ALB (Application Load Balancer)

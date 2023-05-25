@@ -1,16 +1,17 @@
 #!/bin/bash
 {* BEWARE: Sometimes after the execution of the apt-get upgrade command a restart is required *}
-
-sudo apt update
+sudo apt update && sudo apt install curl
 
 {* INSTALL NGINX *}
 sudo apt install -y nginx
 sudo bash -c 'echo Wait for your deployment to finish > /var/www/html/index.html'
 
-{* INSTALL NODE, NPM *}
-sudo apt install nodejs -y
+{* INSTALL NODE, TYPESCRIPT, NPM, YARN}
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash
+sudo apt-get install -y nodejs
 sudo apt install node-typescript -y
 sudo apt install npm -y
+sudo npm install --global yarn
 
 {* CLONE AND SETUP APP FROM GITHUB *}
 cd /var/www/html/

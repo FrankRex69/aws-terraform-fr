@@ -1,7 +1,7 @@
 # 9. Create Ec2 ==> Ubuntu server and install/enable Nginx
 resource "aws_instance" "web-server-instance" {
   ami               = var.ami_ec2
-  instance_type     = "t2.micro"
+  instance_type     = "t2.medium"
   availability_zone = var.availabilityZone
   key_name          = var.keyName
 
@@ -17,7 +17,7 @@ resource "aws_instance" "web-server-instance" {
 
 resource "aws_instance" "web-server-instance-b" {
   ami               = var.ami_ec2
-  instance_type     = "t2.micro"
+  instance_type     = "t2.medium"
   availability_zone = var.availabilityzone_b
   key_name          = var.keyName
 
