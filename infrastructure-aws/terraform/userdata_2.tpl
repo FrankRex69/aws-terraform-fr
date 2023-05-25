@@ -40,6 +40,8 @@ echo "server {
     # The listen directive serves content based on the port defined
     listen 80; # For IPv4 addresses
     listen [::]:80; # For IPv6 addresses
+
+    root /var/www/html/freendly/dist/apps/frontend/;
         
     index index.html index.htm index.nginx-debian.html;
 
@@ -54,7 +56,7 @@ echo "server {
     }
     location / {
         # FrontEnd Freendly
-        root /var/www/html/freendly/dist/apps/frontend;
+        try_files \$uri \$uri /index.html;
     }
 }" > /etc/nginx/sites-available/default;
 
