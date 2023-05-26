@@ -18,3 +18,5 @@ variable "ami_ec2" {
 }
 variable "aws_user_data" {}
 # variable "aws_user_data_2" {}
+
+variable "iam_instance_ec2_profile" {}

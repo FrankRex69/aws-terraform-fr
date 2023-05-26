@@ -3,6 +3,7 @@ resource "aws_instance" "web-server-instance" {
   ami               = var.ami_ec2
   instance_type     = "t2.medium"
   availability_zone = var.availabilityZone
+  iam_instance_profile = var.iam_instance_ec2_profile.name
   key_name          = var.keyName
 
   network_interface {
