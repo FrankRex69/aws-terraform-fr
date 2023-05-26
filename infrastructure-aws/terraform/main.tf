@@ -69,7 +69,7 @@ module "ec2" {
     networkInterface_id = module.ni.network_interface_id
     networkInterface_id_b = module.ni.network_interface_id_b
     aws_user_data = "${file("userdata.tpl")}"
-    aws_user_data_2 = "${file("userdata_2.tpl")}"
+    # aws_user_data_2 = "${file("userdata_2.tpl")}"
 }
 
 # 10. Create ALB (Application Load Balancer)
@@ -77,9 +77,9 @@ module "alb" {
     source             = "./modules/alb"
     vpc_id             = module.vpc.vpc.id
     server_public_ip   = module.ec2.server_public_ip
-    server_public_ip_2 = module.ec2.server_public_ip_2
+    # server_public_ip_2 = module.ec2.server_public_ip_2
     server_private_ip   = module.ec2.server_private_ip
-    server_private_ip_2 = module.ec2.server_private_ip_2
+    # server_private_ip_2 = module.ec2.server_private_ip_2
     securitygroups_id = [module.sg.security_groups_id]
     subnetId       = module.subnet.subnet_id
     subnetId_1b    = module.subnet.subnet_id_1b

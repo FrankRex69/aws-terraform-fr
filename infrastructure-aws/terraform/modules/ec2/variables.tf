@@ -17,4 +17,4 @@ variable "ami_ec2" {
   type = string
 }
 variable "aws_user_data" {}
-variable "aws_user_data_2" {}
+# variable "aws_user_data_2" {}

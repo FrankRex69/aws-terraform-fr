@@ -4,7 +4,7 @@ sudo apt update && sudo apt install curl
 
 {* INSTALL NGINX *}
 sudo apt install -y nginx
-sudo bash -c 'echo Wait for your deployment to finish secondo Ec2 > /var/www/html/index.html'
+sudo bash -c 'echo Wait for your deployment to finish > /var/www/html/index.html'
 
 {* INSTALL NODE, TYPESCRIPT, NPM, YARN}
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash
@@ -15,22 +15,17 @@ sudo npm install --global yarn
 
 {* CLONE AND SETUP APP FROM GITHUB *}
 cd /var/www/html/
-sudo git clone https://frr69Draming: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@github.com/GoodcodeGmbH/freendly.git
-cd /var/www/html/freendly/
-sudo yarn
+sudo git clone https://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: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@github.com/FrankRex69/test-typescript-express.git
+cd /var/www/html/test-typescript-express/
+sudo npm install
 
 {* INSTALL AND SETUP PM2 *}
 sudo npm install pm2 -g
-{* build BACKEND AND FRONTEND *}
-cd /var/www/html/freendly/
-sudo npm install --global nx@latest
-sudo nx run backend-server:build:production
-sudo nx run frontend:build:production
-
-{* setup PM2 for BACKEND AND FRONTEND*}
-sudo pm2 start ./dist/apps/backend/server/main.js --name "backend-Freendly"
+{* setup PM2 for BACKEND *}
+cd /var/www/html/test-typescript-express/
+sudo tsc --build
+sudo pm2 start ./build/index.js --name "test-freendly"
 sudo pm2 save
-sudo pm2 startup
 
 {* SETUP PROXY SERVER NGINX *}
 cd /etc/nginx/sites-available/
@@ -41,8 +36,8 @@ echo "server {
     listen 80; # For IPv4 addresses
     listen [::]:80; # For IPv6 addresses
 
-    root /var/www/html/freendly/dist/apps/frontend/;
-        
+    root /var/www/html;
+
     index index.html index.htm index.nginx-debian.html;
 
     # Replace the below if you have a domain name pointed to the server
@@ -50,13 +45,10 @@ echo "server {
 
     access_log /var/log/nginx/reverse-access.log;
     error_log /var/log/nginx/reverse-error.log;
-    location /api {
-        proxy_pass http://localhost:3333/api;
-        proxy_buffering off;
-    }
+
     location / {
-        # FrontEnd Freendly
-        try_files \$uri \$uri /index.html;
+        # Specify the proxied server's address
+        proxy_pass http://localhost:3003/test;
     }
 }" > /etc/nginx/sites-available/default;
 

@@ -28,12 +28,12 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
 }
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group_attachment
 # Attached Target Group with second instance
-resource "aws_lb_target_group_attachment" "attach-app2" {
-  # count            = length(aws_instance.app-server)
-  target_group_arn = aws_lb_target_group.front.arn
-  target_id        = var.server_private_ip_2
-  port             = 80
-}
+# resource "aws_lb_target_group_attachment" "attach-app2" {
+#   # count            = length(aws_instance.app-server)
+#   target_group_arn = aws_lb_target_group.front.arn
+#   target_id        = var.server_private_ip_2
+#   port             = 80
+# }
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener
 # Create Listener
 resource "aws_lb_listener" "front_end" {

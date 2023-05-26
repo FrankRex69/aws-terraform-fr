@@ -4,11 +4,11 @@ variable "vpc_id" {
 
 variable "server_public_ip" {}
 
-variable "server_public_ip_2" {}
+# variable "server_public_ip_2" {}
 
 variable "server_private_ip" {}
 
-variable "server_private_ip_2" {}
+# variable "server_private_ip_2" {}
 
 variable "securitygroups_id" {}
 
