@@ -15,21 +15,22 @@ sudo npm install --global yarn
 
 {* CLONE AND SETUP APP FROM GITHUB *}
 cd /var/www/html/
-sudo git clone https://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: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@github.com/FrankRex69/test-typescript-express.git
-cd /var/www/html/test-typescript-express/
+#sudo git clone https://frr69Draming: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@github.com/GoodcodeGmbH/freendly.git
+sudo git clone https://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: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@github.com/FrankRex69/freendly-pipeline-test.git
+cd /var/www/html/freendly-pipeline-test/
 sudo yarn
 
 {* INSTALL AND SETUP PM2 *}
 sudo npm install pm2 -g
 {* build BACKEND AND FRONTEND *}
-cd /var/www/html/test-typescript-express/
-sudo npm install
+sudo npm install --global nx@latest
+sudo nx run backend-server:build:production
+sudo nx run frontend:build:production
 
 {* setup PM2 for BACKEND AND FRONTEND*}
-cd /var/www/html/test-typescript-express/
-sudo tsc --build
-sudo pm2 start ./build/index.js --name "test-freendly"
+sudo pm2 start ./dist/apps/backend/server/main.js --name "backend-Freendly"
 sudo pm2 save
+sudo pm2 startup
 
 {* SETUP PROXY SERVER NGINX *}
 cd /etc/nginx/sites-available/
@@ -38,7 +39,9 @@ sudo rm default
 echo "server {
     # The listen directive serves content based on the port defined
     listen 80; # For IPv4 addresses
-    listen [::]:80; # For IPv6 addresses    
+    listen [::]:80; # For IPv6 addresses
+
+    root /var/www/html/freendly-pipeline-test/dist/apps/frontend/;
         
     index index.html index.htm index.nginx-debian.html;
 
@@ -46,10 +49,14 @@ echo "server {
     server_name    _;
 
     access_log /var/log/nginx/reverse-access.log;
-    error_log /var/log/nginx/reverse-error.log;    
+    error_log /var/log/nginx/reverse-error.log;
+    location /api {
+        proxy_pass http://localhost:3333/api;
+        proxy_buffering off;
+    }
     location / {
-        # FrontEnd test-express
-        proxy_pass http://localhost:3003/test;
+        # FrontEnd Freendly
+        try_files \$uri \$uri /index.html;
     }
 }" > /etc/nginx/sites-available/default;
 
