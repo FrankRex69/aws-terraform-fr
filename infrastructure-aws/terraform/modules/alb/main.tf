@@ -49,7 +49,7 @@ resource "aws_lb_listener" "front_end" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb
 # Create resource alb
 resource "aws_lb" "front" {
-  name               = "front"
+  name               = "STAGINGPREPROD"
   internal           = false
   load_balancer_type = "application"
   security_groups    = var.securitygroups_id
@@ -58,6 +58,6 @@ resource "aws_lb" "front" {
   enable_deletion_protection = false
 
   tags = {
-    Environment = "front"
+    Environment = "front-STAGING_PRE-PROD"
   }
 }

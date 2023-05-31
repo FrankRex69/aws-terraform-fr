@@ -12,7 +12,7 @@ resource "aws_instance" "web-server-instance" {
   }
   user_data = var.aws_user_data
   tags = {
-    Name = "web-server-freendly-1"
+    Name = "web-server-freendly-STAGING_PRE-PROD"
   }
 }
 
