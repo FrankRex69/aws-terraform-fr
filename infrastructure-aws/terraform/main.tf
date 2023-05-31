@@ -62,7 +62,7 @@ module "elastic_ip" {
 # 9. Create Ec2 ==> Ubuntu server and install/enable Nginx
 module "ec2" {
     source = "./modules/ec2"
-    iam_instance_ec2_profile = module.iam.iam_instance_ec2_profile
+    iam_instance_ec2_profile = module.iam.iam_instance_ec2_profile_dev
     ami_ec2               = var.aws_ami_ec2
     availabilityZone = var.aws_availability_zone
     availabilityzone_b = var.aws_availability_zone_b
