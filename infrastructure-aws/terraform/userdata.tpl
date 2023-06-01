@@ -15,9 +15,9 @@ sudo npm install --global yarn
 
 {* CLONE AND SETUP APP FROM GITHUB *}
 cd /var/www/html/
-#sudo git clone https://frr69Draming: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@github.com/GoodcodeGmbH/freendly.git
-sudo git clone https://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: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@github.com/FrankRex69/freendly-pipeline-test.git
-cd /var/www/html/freendly-pipeline-test/
+sudo git clone https://frr69Draming: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@github.com/GoodcodeGmbH/freendly.git
+# sudo git clone https://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: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@github.com/FrankRex69/freendly-pipeline-test.git
+cd /var/www/html/freendly/
 sudo yarn
 
 {* INSTALL AND SETUP PM2 *}
@@ -41,7 +41,7 @@ echo "server {
     listen 80; # For IPv4 addresses
     listen [::]:80; # For IPv6 addresses
 
-    root /var/www/html/freendly-pipeline-test/dist/apps/frontend/;
+    root /var/www/html/freendly/dist/apps/frontend/;
         
     index index.html index.htm index.nginx-debian.html;
 
