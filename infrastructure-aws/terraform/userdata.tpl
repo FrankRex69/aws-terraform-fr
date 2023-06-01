@@ -4,7 +4,7 @@ sudo apt update && sudo apt install curl
 
 {* INSTALL NGINX *}
 sudo apt install -y nginx
-sudo bash -c 'echo Wait for your deployment to finish secondo Ec2 > /var/www/html/index.html'
+sudo bash -c 'echo Wait for your create Ec2 and deployment app > /var/www/html/index.html'
 
 {* INSTALL NODE, TYPESCRIPT, NPM, YARN}
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash
