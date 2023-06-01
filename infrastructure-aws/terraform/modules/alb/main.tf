@@ -1,7 +1,7 @@
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group
 # Create target group
-resource "aws_lb_target_group" "front" {
-  name     = "application-front"
+resource "aws_lb_target_group" "front-staging" {
+  name     = "application-front-staging"
   target_type = "ip"
   port     = 80
   protocol = "HTTP"
@@ -22,7 +22,7 @@ resource "aws_lb_target_group" "front" {
 # Attached Target Group with first instance
 resource "aws_lb_target_group_attachment" "attach-app1" {
   # count            = length(aws_instance.app-server)
-  target_group_arn = aws_lb_target_group.front.arn
+  target_group_arn = aws_lb_target_group.front-staging.arn
   target_id        = var.server_private_ip
   port             = 80
 }
@@ -43,7 +43,7 @@ resource "aws_lb_listener" "front_end" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.front.arn
+    target_group_arn = aws_lb_target_group.front-staging.arn
   }
 }
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb
