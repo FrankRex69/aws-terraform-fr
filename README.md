@@ -1,1 +1,1 @@
-# aws-terraform-freendly
+# aws-terraform
